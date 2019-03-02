@@ -1,0 +1,35 @@
+html, body {
+	font-family: 'Lato', sans-serif;
+	margin:0;
+	padding:0;
+	text-align: center;
+}
+
+.sec {
+	background-color: white;
+	padding:10px;
+	font-weight: 300;
+}
+
+#intro {
+	margin:5%;
+}
+
+#title {
+	font-size: 60px;
+}
+
+#begin {
+  line-height: 55px;
+  color: black;
+  text-decoration: none;
+  padding:20px 40px 20px 40px;
+  margin:0px;
+  border: black solid 2px;
+  font-size:25px;
+}
+
+#begin:hover {
+  background-color: black;
+  color:white;
+}

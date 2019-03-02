@@ -1,0 +1,34 @@
+html, body {
+	font-family: 'Lato', sans-serif;
+	color:black;
+	text-align: center;
+}
+
+#intro_donny {
+	height:40px;
+	width:100%;
+}
+
+#dimmer {
+    background:#000;
+    opacity:0.95;
+    position:fixed; 
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    display:none;
+    z-index:9999; 
+}
+
+#gamewin {
+    background:#000;
+    opacity:0.95;
+    position:fixed; 
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    display:none;
+    z-index:9998; 
+}
