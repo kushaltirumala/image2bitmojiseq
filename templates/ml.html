@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<head>
+	<title>ML</title>
+	<link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <link href="static/main.css" rel="stylesheet">
+
+</head>
+<html>
+	<body>
+		<div class="sec" id="intro">
+    		<h2 id="title">Input an image</h2>    		
+                <form action="" method=post enctype=multipart/form-data>
+                  <p><input type=file name=file>
+                     <input type=submit value=Upload>
+                </form>
+                {% if filepath %}
+                <img width="300" src="{{filepath}}">
+                {% else %}
+                <p>no image uploaded!</p>
+                {% endif %}
+
+    	</div>
+
+
+    	
+	</body>
+<!-- 	<script>
+		var background_audio = new Audio('static/music/adventure_awaits.mp3');
+		background_audio.play();
+	</script> -->
+</html>

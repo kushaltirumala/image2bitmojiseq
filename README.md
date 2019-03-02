@@ -1,1 +1,1 @@
-# image2bitmojiseq
+# image2bitmojisequence
