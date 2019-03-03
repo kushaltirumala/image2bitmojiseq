@@ -7,6 +7,9 @@ from image_captioning.config import Config
 from image_captioning.model import CaptionGenerator
 from image_captioning.dataset import prepare_train_data, prepare_eval_data, prepare_test_data
 import shutil
+import pickle
+import nltk
+import numpy as np
 
 app = Flask(__name__)
 
@@ -22,6 +25,67 @@ print("starting to create captions")
 model = CaptionGenerator(config)
 model.load(sess, './image_captioning/models/289999.npy')
 tf.get_default_graph().finalize()
+
+
+
+
+
+
+# --------- BITMOJI MATCHING ------------------
+
+print("starting bitmoji matching")
+
+with open('mlml/data/train_data_python2.7', 'rb') as f:
+    data = pickle.load(f)
+
+bitmoji_num = "289604503_9-s4"
+new_data = {}
+
+for k,v in data.items():
+    s_occurences = k.count("%s")
+    replacement = tuple(bitmoji_num for i in range(s_occurences))
+    new_k = str(k) % replacement
+    new_data[new_k] = v
+
+inv_data = {}
+index_dic = {}
+
+i = 0
+for k, v in new_data.items():
+    for word in v:
+        inv_data[word] = k
+    index_dic[k] = i 
+    i += 1 
+
+inv_index_dic = {}
+for k,v in index_dic.items():
+    inv_index_dic[v] = k
+
+def match_phrase(s, max_num=5):
+    words = nltk.word_tokenize(s)
+    scores = np.array([0 for i in range(len(index_dic))])
+    for word in words:
+#         if word in inv_data:
+#             scores[index_dic[inv_data[word]]] += 1
+        for k, v in inv_data.items():
+            if (k == word) or (k == word + "*"):
+#                 print("here")
+#                 print(index_dic[inv_data[k]])
+                scores[index_dic[inv_data[k]]] += 1
+            
+    
+    most_related_emoji_indices = scores.argsort()[-max_num:][::-1]
+    
+    num_matches = np.count_nonzero(scores)
+    
+    if num_matches < max_num:
+        most_related_emoji_indices = most_related_emoji_indices[:num_matches]
+    
+    ans = [inv_index_dic[i] for i in most_related_emoji_indices]
+    
+    return ans, scores
+
+# --------- END BITMOJI MATCHING --------------
 
 @app.route('/')
 def index():
@@ -60,7 +124,7 @@ def start_game():
 
 		os.remove("static/results.csv")
 
-
+		links = match_phrase(caption)
 	
 		return render_template('ml.html', filepath=filepath, caption=caption)
 	else:
