@@ -17,6 +17,10 @@
                 {% if filepath %}
                 <img width="300" src="{{filepath}}">
                 <p>{{caption}}</p>
+                <br>
+                {% for link in links %}
+                <img width="200" src="{{link}}">
+                {% endfor %}
                 {% else %}
                 <p>no image uploaded!</p>
                 {% endif %}

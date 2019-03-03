@@ -124,9 +124,10 @@ def start_game():
 
 		os.remove("static/results.csv")
 
-		links = match_phrase(caption)
+		links, scores = match_phrase(caption)
+		print(links)
 	
-		return render_template('ml.html', filepath=filepath, caption=caption)
+		return render_template('ml.html', filepath=filepath, caption=caption, links=links)
 	else:
 		return render_template('ml.html')
 
