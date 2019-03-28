@@ -24,7 +24,7 @@ Pipeline 1:
 - With a given hidden state, we use a LSTM with attention as our RNN to roll out a sequence from this encoded hidden state.
 - These vectors can be converted to words (by looking at the initial dictionary of words the model builds) and emojis through embeddings (such as the one presented in Pipeline 2).
 
-Pipeline 2: (not demoed in this repo, but for reference)
+Pipeline 2: (code not in in this repo, but explained here for reference)
 - We are given as input a sequence of text representing a sentence
 - We can convert this text to a tree using a variety of learned grammar representations
 - We chose to use Stanford’s NLTK since with the time bounds of a Hackathon training our own was not feasible
@@ -32,3 +32,6 @@ Pipeline 2: (not demoed in this repo, but for reference)
 - We can then match these sequences of text with ground truth text labels of Bitmojis, which allow us to choose the best Bitmoji that matches our selected sequence of text
 - We can match by taking minimum distances in another embedding space of strings; again for brevity we chose to use Word2Vec and weighted sums of strings within a phase
 
+## TODO:
+- With respect to the image pipeline, we want to experiment with larger datasets (such as Google AI’s recently released 3M captioning dataset), parameter tuning, and perhaps a more complex class of models. We also want to explore omitting the captioning step and exploring ways to directly embed images with bitmojis.
+- We also wanted to try some sort of ensembling method to combine embedding methods (with the intuition that combining two independent ways of arriving at bitmoji sequences would lead to more stable/universal embeddings).
