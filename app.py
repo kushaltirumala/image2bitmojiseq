@@ -23,7 +23,7 @@ sess = tf.Session()
 print("starting to create captions")
 # data, vocabulary = prepare_test_data(config)
 model = CaptionGenerator(config)
-model.load(sess, './image_captioning/models/289999.npy')
+model.load(sess, 'model.npy')
 tf.get_default_graph().finalize()
 
 
@@ -35,7 +35,7 @@ tf.get_default_graph().finalize()
 
 print("starting bitmoji matching")
 
-with open('mlml/data/train_data_python2.7', 'rb') as f:
+with open('bitmoji_mapping', 'rb') as f:
     data = pickle.load(f)
 
 bitmoji_num = "289604503_9-s4"
@@ -103,7 +103,6 @@ def start_game():
 		        os.unlink(os.path.join(root, f))
 		    for d in dirs:
 		        shutil.rmtree(os.path.join(root, d))
-		print "hi"
 		file = request.files['file']
 		filepath = "static/images/"+file.filename 
 		file.save(filepath)
