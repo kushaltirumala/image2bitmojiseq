@@ -97,6 +97,12 @@ def index():
 @app.route("/ml", methods=['GET', 'POST'])
 def start_game():
 	if request.method == 'POST':
+		# remove used images
+		for root, dirs, files in os.walk('static/images'):
+		    for f in files:
+		        os.unlink(os.path.join(root, f))
+		    for d in dirs:
+		        shutil.rmtree(os.path.join(root, d))
 		print "hi"
 		file = request.files['file']
 		filepath = "static/images/"+file.filename 
@@ -115,14 +121,13 @@ def start_game():
 		df = pd.read_csv("static/results.csv")
 		caption = df['caption'][len(df)-1]
 
-		# remove used images
-		for root, dirs, files in os.walk('static/images'):
-		    for f in files:
-		        os.unlink(os.path.join(root, f))
-		    for d in dirs:
-		        shutil.rmtree(os.path.join(root, d))
 
-		os.remove("static/results.csv")
+		#         
+		# temp = filepath.split(".")[0]
+
+		# os.remove("static/results.csv")
+		# # os.remove(filepath)
+		# os.remove(temp + "_result.jpg")
 
 		links, scores = match_phrase(caption)
 		print(links)
