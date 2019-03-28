@@ -1,7 +1,7 @@
 # image2bitmojisequence
 
 ### Introduction
-Much of unsupervised learning is focused on finding accurate/stable embeddings in different domains. Recently, there has been interest in embeddings involving emojis: specifically, Deepmoji have investigated text to emoji embeddings. To take a novel twist on emoji embeddings, we decided to investigate image to Bitmoji embeddings. One reason why we decided to investigate image to emoji embeddings was because intuitively, images lie in the visual domain, so it should be easier to map images to emojis. We also had access to an extensive emoji collection (Bitmojis), which made it easier to convey complex emotions/concepts found in images. 
+Much of unsupervised learning is focused on finding accurate/stable embeddings in different domains. Recently, there has been interest in embeddings involving emojis: specifically, Deepmoji have investigated text to emoji embeddings. To take a novel twist on emoji embeddings, we decided to investigate image to Bitmoji embeddings. Images lie in the visual domain, so it's a natural transition to try and map images to emojis (or emoji sequences). We also had access to an extensive emoji collection (Bitmojis), which made it easier to convey complex emotions/concepts found in images. 
 
 TLDR:
 Overall, we aimed to build a pipeline that turned images into bitmoji sequences. To establish a baseline, we came up with a simple heuristic-based pipeline (pipeline 2 in the below specifics section) that did text to bitmoji sequences (this area has been explored — see DeepMoji), and compared the two pipelines:
